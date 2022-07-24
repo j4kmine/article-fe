@@ -1,0 +1,42 @@
+<!-- Section-->
+<app-header></app-header>
+<section class="py-5">
+
+    <div class="container ">
+        <div class="row row-cols-1 row-cols-md-4 row-cols-xl-4">
+            <div class="col">
+                <input type="keyword" class="form-control" placeholder="Search.." [(ngModel)]="queryString">
+            </div>
+            <div class="col">
+                <select class="form-select" [(ngModel)]="queryCategory">
+                <option value="">>All Category...</option>
+                <option *ngFor="let datacat of category; index as i" [value]="datacat.value" >{{ datacat['category']}}</option>
+              </select>
+            </div>
+            <div class="col">
+                <select class="form-select" [(ngModel)]="queryCountry">
+                <option value="">All Country...</option>
+                <option *ngFor="let data of country; index as i" [value]="data.code" >{{ data['name']}}</option>
+              </select>
+            </div>
+            <div class="col">
+                <button type="button" class="btn btn-success" (click)=" searchData();">Search</button>
+            </div>
+        </div>
+        <div class="mt-5 row gx-4 gx-lg-5 row-cols-1 row-cols-md-3 row-cols-xl-4 justify-content-center">
+            <div class="col mb-5" *ngFor="let article of data ; index as i">
+                <app-card [articles]="article"></app-card>
+
+            </div>
+
+        </div>
+
+        <div *ngIf="page != last" class="mt-5 row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
+            <div class="col-6">
+                <button type="button" class="btn btn-primary btn-lg btn-block" (click)=" loadMore();">LoadMore..</button>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Footer-->
+<app-footer></app-footer>
